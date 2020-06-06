@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <div class="Title_container">
+       <img class="Title_logo" alt="Vue logo" src="@/assets/logo.png">
+       <h1>Shopping List</h1>
+     </div>
     <router-view/>
   </div>
 </template>
 
+
 <style lang="scss">
+// Global CSS Rules
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -17,16 +19,57 @@
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+h1 {
+  font-size: 8em;
+  color:#204289;;
+}
 
-  a {
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
+}
+
+.btn {
+    color: #ffffff;
+    font-size: 1.25em;
+    border-radius: 2em;
+    padding: 0.75em 1em;
+
     font-weight: bold;
-    color: #2c3e50;
+    text-transform: uppercase;
+    cursor: pointer;
 
-    &.router-link-exact-active {
-      color: #42b983;
+    &:focus {
+      outline: unset;
     }
+
+    &-sucess {
+      background-color: #42b983;
+      border: solid green 3px;
+    }
+}
+
+//Scoped CSS Rules
+.Title {
+  &_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+ &_logo {
+    margin-right: 4em;
+    max-height: 10em
   }
 }
 </style>
