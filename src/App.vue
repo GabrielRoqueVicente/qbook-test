@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div class="Title_container">
-       <img class="Title_logo" alt="Vue logo" src="@/assets/logo.png">
-       <h1>Shopping List</h1>
-     </div>
-    <router-view/>
+      <img class="Title_logo" alt="Vue logo" src="@/assets/logo.png" />
+      <h1>Shopping List</h1>
+    </div>
+    <router-view />
   </div>
 </template>
 
@@ -21,42 +21,27 @@
 
 h1 {
   font-size: 8em;
-  color:#204289;;
-}
-
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+  color: #204289;
 }
 
 .btn {
-    color: #ffffff;
-    font-size: 1.25em;
-    border-radius: 2em;
-    padding: 0.75em 1em;
+  color: #ffffff;
+  font-size: 1.25em;
+  border-radius: 2em;
+  padding: 0.75em 1em;
 
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
 
-    &:focus {
-      outline: unset;
-    }
+  &:focus {
+    outline: unset;
+  }
 
-    &-sucess {
-      background-color: #42b983;
-      border: solid green 3px;
-    }
+  &-success {
+    background-color: #42b983;
+    border: solid green 3px;
+  }
 }
 
 //Scoped CSS Rules
@@ -67,9 +52,9 @@ a {
     align-items: center;
   }
 
- &_logo {
+  &_logo {
     margin-right: 4em;
-    max-height: 10em
+    max-height: 10em;
   }
 }
 </style>

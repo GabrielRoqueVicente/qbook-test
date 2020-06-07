@@ -1,20 +1,20 @@
 import Vue from 'vue';
 import VueRouter, { RouteConfig } from 'vue-router';
 import Home from '../views/Home.vue';
-import ShoppingList from '../views/ShoppingList.vue';
+import ShoppingList from '../views/Shopping.vue';
 
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
   {
+    path: '/shoppingList',
+    name: 'Shopping',
+    component: ShoppingList,
+  },
+  {
     path: '/',
     name: 'Home',
     component: Home,
-  },
-  {
-    path: '/shoppingList',
-    name: 'ShoppingList',
-    component: ShoppingList,
   },
 ];
 
