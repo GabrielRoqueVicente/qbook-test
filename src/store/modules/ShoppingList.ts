@@ -12,7 +12,6 @@ class ShoppingList extends VuexModule {
   get getTotalPrice(): number {
     const reducer = (acc: number, curr: ShoppingListArticle) => acc + curr.price * curr.qty;
     const data = [...this.shoppingList];
-    console.log(data.reduce(reducer, 0));
     return data.reduce(reducer, 0);
   }
 
@@ -21,7 +20,6 @@ class ShoppingList extends VuexModule {
     const { item, index } = payload;
     const newItem = [...this.shoppingList];
     newItem[index] = item;
-    console.log(newItem);
     this.shoppingList = newItem;
   }
 
