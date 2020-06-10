@@ -9,6 +9,13 @@ import {
 class ShoppingList extends VuexModule {
   public shoppingList: ShoppingListArticle[] | [] = [];
 
+  get getTotalPrice(): number {
+    const reducer = (acc: number, curr: ShoppingListArticle) => acc + curr.price * curr.qty;
+    const data = [...this.shoppingList];
+    console.log(data.reduce(reducer, 0));
+    return data.reduce(reducer, 0);
+  }
+
   @Mutation
   public setNewShoppingList(payload: setNewShoppingListType) {
     const { item, index } = payload;

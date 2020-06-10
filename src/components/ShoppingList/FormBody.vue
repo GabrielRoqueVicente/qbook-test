@@ -13,7 +13,7 @@
       <input type="number" :value="qty * price" step="0.01" min="0.01" disabled />
     </td>
     <td>
-      <div @click="this.delete">X</div>
+      <div class="FormBody_deleteBtn" @click="this.delete">X</div>
     </td>
   </tr>
 </template>
@@ -75,3 +75,14 @@ export default class ShoppingList extends Vue {
   private delete!: (arg: number) => void;
 }
 </script>
+
+<style lang="scss">
+//Scoped CSS Rules
+.FormBody {
+  &_deleteBtn {
+    cursor: pointer;
+    color: red;
+    font-weight: bold;
+  }
+}
+</style>

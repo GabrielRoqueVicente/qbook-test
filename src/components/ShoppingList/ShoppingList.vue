@@ -7,6 +7,7 @@
           <th>Quantity</th>
           <th>Product</th>
           <th>Price</th>
+          <th>Total</th>
         </tr>
       </thead>
       <tbody>
@@ -17,7 +18,7 @@
         <td></td>
         <td></td>
         <td>
-          <!-- <input type="number" :value="qty * price" disabled /> -->
+          <input type="number" :value="this.getTotalPrice" disabled />
         </td>
       </tbody>
     </table>
@@ -50,11 +51,11 @@ export default class ShoppingList extends Vue {
   @shoppingList.Action
   private save!: () => void;
 
+  @shoppingList.Getter
+  private getTotalPrice!: () => number;
+
   beforeMount() {
     this.load();
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss"></style>

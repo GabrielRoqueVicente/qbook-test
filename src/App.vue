@@ -8,7 +8,6 @@
   </div>
 </template>
 
-
 <style lang="scss">
 // Global CSS Rules
 #app {
@@ -22,6 +21,10 @@
 h1 {
   font-size: 8em;
   color: #204289;
+}
+
+table {
+  margin: auto;
 }
 
 .btn {
