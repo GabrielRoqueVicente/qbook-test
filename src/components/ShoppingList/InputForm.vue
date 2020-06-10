@@ -29,26 +29,38 @@
 </template>
 
 <script lang="ts">
-import { Component, Watch, Vue } from "vue-property-decorator";
-import { namespace } from "vuex-class";
+import { Component, Watch, Vue } from 'vue-property-decorator';
+import { namespace } from 'vuex-class';
 
-import { ShoppingListArticle } from "./ShoppingListTypes";
+import { ShoppingListArticle } from './ShoppingListTypes';
 
 const INITIAL_VALUES = {
   qty: 1,
-  product: "",
+  product: '',
   price: 1,
 };
 
-const shoppingList = namespace("ShoppingList");
+const shoppingList = namespace('ShoppingList');
 @Component
 export default class InputForm extends Vue {
   private qty = INITIAL_VALUES.qty;
   private product = INITIAL_VALUES.product;
   private price = INITIAL_VALUES.price;
+  private index = '';
 
   @shoppingList.Mutation
   private add!: (article: ShoppingListArticle) => void;
+
+  @shoppingList.Action
+  private save!: () => void;
+
+  @Watch('shoppingList', {
+    deep: true,
+  })
+  shppingListChanged() {
+    console.log('saved');
+    this.save();
+  }
 
   resetState() {
     this.qty = INITIAL_VALUES.qty;
@@ -61,7 +73,7 @@ export default class InputForm extends Vue {
       qty: this.qty,
       product: this.product,
       price: this.price,
-      computedPrice: "0",
+      computedPrice: '0',
     };
     this.add(newArticle);
     this.resetState();
