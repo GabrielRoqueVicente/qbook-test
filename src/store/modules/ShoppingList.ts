@@ -12,7 +12,10 @@ class ShoppingList extends VuexModule {
   @Mutation
   public setNewShoppingList(payload: setNewShoppingListType) {
     const { item, index } = payload;
-    this.shoppingList[index] = { ...item };
+    const newItem = [...this.shoppingList];
+    newItem[index] = item;
+    console.log(newItem);
+    this.shoppingList = newItem;
   }
 
   @Mutation
@@ -27,9 +30,10 @@ class ShoppingList extends VuexModule {
   }
 
   @Mutation
-  public delete(key: number) {
+  public deleteItem(index: number) {
     const newList = [...this.shoppingList];
-    this.shoppingList = newList.splice(key, 1);
+    newList.splice(index, 1);
+    this.shoppingList = newList;
   }
 
   @Mutation
@@ -44,15 +48,21 @@ class ShoppingList extends VuexModule {
     localStorage.setItem('distantShoppingList', JSON.stringify(this.shoppingList));
   }
 
-  @Action({ rawError: true })
-  public update(item: ShoppingListArticle, index: number) {
-    this.context.commit('setNewShoppingList', { item, index });
+  @Action
+  public update(payload: setNewShoppingListType) {
+    this.context.commit('setNewShoppingList', payload);
     this.context.dispatch('save');
   }
 
-  @Action({ rawError: true })
+  @Action
   public add(item: ShoppingListArticle) {
     this.context.commit('addNewItem', item);
+    this.context.dispatch('save');
+  }
+
+  @Action
+  public delete(key: number) {
+    this.context.commit('deleteItem', key);
     this.context.dispatch('save');
   }
 }

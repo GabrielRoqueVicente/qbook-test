@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Watch, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 
 import { ShoppingListArticle } from './ShoppingListTypes';
@@ -62,7 +62,6 @@ export default class InputForm extends Vue {
       qty: this.qty,
       product: this.product,
       price: this.price,
-      computedPrice: '0',
     };
     this.add(newArticle);
     this.resetState();

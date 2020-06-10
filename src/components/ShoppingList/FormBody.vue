@@ -12,6 +12,9 @@
     <td>
       <input type="number" :value="qty * price" step="0.01" min="0.01" disabled />
     </td>
+    <td>
+      <div @click="this.delete">X</div>
+    </td>
   </tr>
 </template>
 
@@ -66,6 +69,9 @@ export default class ShoppingList extends Vue {
   private save!: () => void;
 
   @shoppingList.Action
-  private update!: (arg1: setNewShoppingListType) => void;
+  private update!: (arg: setNewShoppingListType) => void;
+
+  @shoppingList.Action
+  private delete!: (arg: number) => void;
 }
 </script>
