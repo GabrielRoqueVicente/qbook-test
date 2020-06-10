@@ -7,6 +7,11 @@ class ShoppingList extends VuexModule {
   public shoppingList: ShoppingListArticle[] | [] = [];
 
   @Mutation
+  public mutate(item: ShoppingListArticle, index: number) {
+    this.shoppingList[index] = { ...item };
+  }
+
+  @Mutation
   public load() {
     const data = localStorage.getItem('distantShoppingList');
     this.shoppingList = data != null ? JSON.parse(data) : [];
@@ -33,6 +38,12 @@ class ShoppingList extends VuexModule {
   @Action
   public save() {
     localStorage.setItem('distantShoppingList', JSON.stringify(this.shoppingList));
+  }
+
+  @Action
+  public update(item: ShoppingListArticle, index: number) {
+    this.mutate(item, index);
+    this.save();
   }
 }
 

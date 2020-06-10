@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Watch, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 
 import InputForm from './InputForm.vue';
@@ -46,11 +46,14 @@ const shoppingList = namespace('ShoppingList');
   },
 })
 export default class ShoppingList extends Vue {
+  @shoppingList.State
+  private shoppingList!: ShoppingListArticle[] | [];
+
   @shoppingList.Mutation
   private load!: () => void;
 
-  @shoppingList.State
-  private shoppingList!: ShoppingListArticle[] | [];
+  @shoppingList.Action
+  private save!: () => void;
 
   beforeMount() {
     this.load();

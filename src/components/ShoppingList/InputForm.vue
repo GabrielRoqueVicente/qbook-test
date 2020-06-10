@@ -51,17 +51,6 @@ export default class InputForm extends Vue {
   @shoppingList.Mutation
   private add!: (article: ShoppingListArticle) => void;
 
-  @shoppingList.Action
-  private save!: () => void;
-
-  @Watch('shoppingList', {
-    deep: true,
-  })
-  shppingListChanged() {
-    console.log('saved');
-    this.save();
-  }
-
   resetState() {
     this.qty = INITIAL_VALUES.qty;
     this.product = INITIAL_VALUES.product;
