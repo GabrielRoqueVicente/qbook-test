@@ -1,13 +1,17 @@
 import { VuexModule, Module, Mutation, Action } from 'vuex-module-decorators';
 
-import { ShoppingListArticle } from '@/components/ShoppingList/ShoppingListTypes';
+import {
+  ShoppingListArticle,
+  setNewShoppingListType,
+} from '@/components/ShoppingList/ShoppingListTypes';
 
 @Module({ namespaced: true })
 class ShoppingList extends VuexModule {
   public shoppingList: ShoppingListArticle[] | [] = [];
 
   @Mutation
-  public mutate(item: ShoppingListArticle, index: number) {
+  public setNewShoppingList(payload: setNewShoppingListType) {
+    const { item, index } = payload;
     this.shoppingList[index] = { ...item };
   }
 
@@ -18,8 +22,8 @@ class ShoppingList extends VuexModule {
   }
 
   @Mutation
-  public add(article: any) {
-    this.shoppingList = [...this.shoppingList, article];
+  public addNewItem(item: ShoppingListArticle) {
+    this.shoppingList = [...this.shoppingList, item];
   }
 
   @Mutation
@@ -40,10 +44,16 @@ class ShoppingList extends VuexModule {
     localStorage.setItem('distantShoppingList', JSON.stringify(this.shoppingList));
   }
 
-  @Action
+  @Action({ rawError: true })
   public update(item: ShoppingListArticle, index: number) {
-    this.mutate(item, index);
-    this.save();
+    this.context.commit('setNewShoppingList', { item, index });
+    this.context.dispatch('save');
+  }
+
+  @Action({ rawError: true })
+  public add(item: ShoppingListArticle) {
+    this.context.commit('addNewItem', item);
+    this.context.dispatch('save');
   }
 }
 

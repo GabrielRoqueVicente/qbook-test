@@ -3,3 +3,8 @@ export type ShoppingListArticle = {
   product: string;
   price: number;
 };
+
+export type setNewShoppingListType = {
+  item: ShoppingListArticle;
+  index: number;
+};

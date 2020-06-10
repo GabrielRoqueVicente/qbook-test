@@ -11,20 +11,7 @@
       </thead>
       <tbody>
         <template v-for="(item, index) in shoppingList">
-          <tr v-bind:key="index">
-            <td>
-              <input type="number" v-model.number="item.qty" min="1" />
-            </td>
-            <td>
-              <input type="string" v-model="item.product" required />
-            </td>
-            <td>
-              <input type="number" v-model.number="item.price" step="0.01" />
-            </td>
-            <td>
-              <input type="number" :value="item.qty * item.price" step="0.01" min="0.01" disabled />
-            </td>
-          </tr>
+          <FormBody v-bind:item="item" v-bind:itemIndex="index" v-bind:key="index" />
         </template>
       </tbody>
     </table>
@@ -32,10 +19,11 @@
 </template>
 
 <script lang="ts">
-import { Component, Watch, Vue } from 'vue-property-decorator';
+import { Component, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 
 import InputForm from './InputForm.vue';
+import FormBody from './FormBody.vue';
 import { ShoppingListArticle } from './ShoppingListTypes';
 
 const shoppingList = namespace('ShoppingList');
@@ -43,6 +31,7 @@ const shoppingList = namespace('ShoppingList');
 @Component({
   components: {
     InputForm,
+    FormBody,
   },
 })
 export default class ShoppingList extends Vue {

@@ -48,7 +48,7 @@ export default class InputForm extends Vue {
   private price = INITIAL_VALUES.price;
   private index = '';
 
-  @shoppingList.Mutation
+  @shoppingList.Action
   private add!: (article: ShoppingListArticle) => void;
 
   resetState() {

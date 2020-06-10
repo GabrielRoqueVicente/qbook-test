@@ -19,7 +19,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { namespace } from 'vuex-class';
 
-import { ShoppingListArticle } from './ShoppingListTypes';
+import { ShoppingListArticle, setNewShoppingListType } from './ShoppingListTypes';
 
 const shoppingList = namespace('ShoppingList');
 
@@ -39,7 +39,7 @@ export default class ShoppingList extends Vue {
   set qty(newValue: number) {
     const newItem = { ...this.item };
     newItem.qty = newValue;
-    this.upload(this.index, newItem);
+    this.update({ item: newItem, index: this.index });
   }
 
   get product(): string {
@@ -49,7 +49,7 @@ export default class ShoppingList extends Vue {
   set product(newValue: string) {
     const newItem = { ...this.item };
     newItem.product = newValue;
-    this.upload(this.index, newItem);
+    this.update({ item: newItem, index: this.index });
   }
 
   get price(): number {
@@ -59,13 +59,13 @@ export default class ShoppingList extends Vue {
   set price(newValue: number) {
     const newItem = { ...this.item };
     newItem.price = newValue;
-    this.upload(this.index, newItem);
+    this.update({ item: newItem, index: this.index });
   }
 
   @shoppingList.Action
   private save!: () => void;
 
   @shoppingList.Action
-  private upload!: (index: number, item: ShoppingListArticle) => void;
+  private update!: (arg1: setNewShoppingListType) => void;
 }
 </script>
